@@ -107,7 +107,7 @@
   .mobile-nav{display:none;flex-direction:column;background:var(--ink-2);border-bottom:1px solid var(--line-dark);}
   .mobile-nav a{padding:14px 24px;border-bottom:1px solid var(--line-dark);font-weight:600;color:var(--on-dark);}
   .mobile-nav.open{display:flex;}
-  @media (max-width:880px){ nav.main-nav{display:none;} .nav-toggle{display:inline-flex;align-items:center;justify-content:center;} }
+  @media (max-width:1024px){ nav.main-nav{display:none;} .nav-toggle{display:inline-flex;align-items:center;justify-content:center;} }
 
   /* ---- hero ---- */
   .hero{background:var(--ink);color:var(--on-dark);min-height:92vh;display:flex;align-items:center;overflow:hidden;padding:150px 24px 100px;}
@@ -609,6 +609,10 @@
   });
   mobileNav.querySelectorAll("a").forEach(function(a){
     a.addEventListener("click", function(){ mobileNav.classList.remove("open"); toggle.setAttribute("aria-expanded","false"); });
+  });
+  /* close the menu if the window grows back to the desktop layout */
+  window.matchMedia("(min-width: 1025px)").addEventListener("change", function(e){
+    if (e.matches){ mobileNav.classList.remove("open"); toggle.setAttribute("aria-expanded","false"); }
   });
 
   /* scroll progress bar */
